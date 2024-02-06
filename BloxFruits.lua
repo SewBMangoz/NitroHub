@@ -62,7 +62,7 @@ function BuyFightingStyle()
     elseif _G.BuyFightingStyleFunction == "Dragon Talon" then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
     elseif _G.BuyFightingStyleFunction == "Godhuman" then
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Godhuman")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
     elseif _G.BuyFightingStyleFunction == "Sanguine Art" then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
     end
