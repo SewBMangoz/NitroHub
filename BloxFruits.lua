@@ -106,6 +106,48 @@ Tabs.TabTeleport:AddButton({
     end
 })
 
+local TweenSpeed = Tabs.TabTeleport:AddDropdown("TweenSpeed", {
+    Title = "Tween Speed",
+    Values = {"250", "275", "300", "325", "350"},
+    Multi = false,
+    Default = 1,
+})
+
+TweenSpeed:SetValue("250")
+
+TweenSpeed:OnChanged(function(value)
+    _G.TweenSpeed = value
+end)
+
+Tabs.TabTeleport:AddButton({
+    Title = "Stop Tween",
+    Callback = function()
+        if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+    end
+})
+
+Tabs.TabTeleport:AddButton({
+    Title = "No Clip",
+    Callback = function(value)
+        _G.NoClip = value
+    end
+})
+
+spawn(function()
+    pcall(function()
+        game:GetService("RunService").Stepped:Connect(function()
+    if _G.NoClip then
+                for _, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false    
+                    end
+                end
+            end
+        end)
+    end)
+end)
+
 Fluent:Notify({
     Title = "Nitro Hub",
     Content = "Loaded Script ! ",
